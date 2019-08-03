@@ -22,11 +22,12 @@ if ($this->Session->check('Message.auth')) {
 
 <div class="row mb-3">
 	<div class="col-md-4 text-md-right">
-		<?php echo $this->BcForm->label('ChatWorkUser.api_token', 'API Token') ?>
+		<?php echo $this->BcForm->label('ChatWorkUser.account_id', 'アカウントID') ?>
 	</div>
 	<div class="col-md-8">
-		<?php echo $this->BcForm->input('ChatWorkUser.api_token', array('type'=>'text', 'class' => 'form-control')) ?>
-		<?php echo $this->BcForm->error('ChatWorkUser.api_token') ?>
+		<?php echo $this->BcForm->input('ChatWorkUser.account_id', array('type'=>'text', 'class' => 'form-control')) ?>
+		<small>数字のみ。</small>
+		<?php echo $this->BcForm->error('ChatWorkUser.account_id') ?>
 	</div>
 </div>
 <div class="row mb-3">

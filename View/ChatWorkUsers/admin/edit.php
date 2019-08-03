@@ -11,10 +11,10 @@
 			</td>
 		</tr>
 		<tr>
-			<th class="col-head" width="150"><?php echo $this->BcForm->label('ChatWorkUser.api_token', 'API Token') ?></th>
+			<th class="col-head" width="150"><?php echo $this->BcForm->label('ChatWorkUser.account_id', 'アカウントID') ?></th>
 			<td class="col-input">
-			<?php echo $this->BcForm->input('ChatWorkUser.api_token', array('type'=>'text')) ?>
-			<?php echo $this->BcForm->error('ChatWorkUser.api_token') ?></td>
+			<?php echo $this->BcForm->input('ChatWorkUser.account_id', array('type'=>'text')) ?>
+			<?php echo $this->BcForm->error('ChatWorkUser.account_id') ?></td>
 		</tr>
 		<tr>
 			<th class="col-head" width="150"><?php echo $this->BcForm->label('ChatWorkUser.room_id', 'Room Id (Group Id)') ?></th>

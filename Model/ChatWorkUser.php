@@ -14,15 +14,12 @@ class ChatWorkUser extends AppModel {
 */
 	
 	public $validate = [
-		'api_token' => [
+        'room_id' => [
             'maxLength' => [
                 'rule' => ['maxLength', 100],
                 'message' => '100文字以内で入力してください。'],
-            'alphaNumeric' => [
-                'rule' => 'alphaNumeric',
-                'message' => '英数字のみで入力してください。'],
         ],
-        'room_id' => [
+        'account_id' => [
             'maxLength' => [
                 'rule' => ['maxLength', 100],
                 'message' => '100文字以内で入力してください。'],
@@ -37,6 +34,7 @@ class ChatWorkUser extends AppModel {
 	public function beforeValidate($options = array()){
 	    if(isset($this->data[$this->name]['room_id'])){
 		    $this->data[$this->name]['room_id'] = $this->numbersOnly($this->data[$this->name]['room_id']);
+		    $this->data[$this->name]['account_id'] = $this->numbersOnly($this->data[$this->name]['account_id']);
 	    }
 	    return true;
     }
@@ -77,16 +75,18 @@ class ChatWorkUser extends AppModel {
 			return $ChatWorkLog;
 		}
 		$ChatWorkUser = $this->findUser($mypage_id);
-		$api_token = $ChatWorkUser['ChatWorkUser']['api_token'];
+		$api_token = Configure::read('ChatWork.ApiToken');
+		$account_id = $ChatWorkUser['ChatWorkUser']['account_id'];
 		$room_id = $ChatWorkUser['ChatWorkUser']['room_id'];
 		$url = 'https://api.chatwork.com/v2/rooms/'.$room_id.'/messages';
-		if(empty($api_token) && empty($room_id)){
+		if(empty($account_id) && empty($room_id)){
 			return false;
 		}
 		
 		//送信
 		//header("Content-type: text/html; charset=utf-8");
-		$params = ["body" => $message];
+		$body = '[To:'.$account_id.'] '.$message;
+		$params = ["body" => $body];
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-ChatWorkToken: '. $api_token));
