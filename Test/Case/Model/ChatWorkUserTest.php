@@ -28,6 +28,20 @@ class ChatWorkUserTest extends BaserTestCase {
 		$this->assertFalse($r);
 	}
 */
+
+	public function testFindUser(){
+		$mypage_id = '1';
+		$r = $this->ChatWorkUser->findUser($mypage_id);
+		$this->assertEquals('1', $r['ChatWorkUser']['id']);
+	}
+	
+	public function testNotificationMessage(){
+		//Configure::write('MccPlugin.TEST_MODE', false);
+		$mypage_id = '1';
+		$message = '[To:4083869]テスト5';
+		$r = $this->ChatWorkUser->notificationMessage($mypage_id, $message);
+		$this->assertEquals('test', $r['ChatWorkLog']['status']);
+	}
 	
 	
 	

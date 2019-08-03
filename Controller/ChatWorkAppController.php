@@ -9,7 +9,7 @@
 */
 App::uses('AppController', 'Controller');
 
-class ChatWorkController extends AppController {
+class ChatWorkAppController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();

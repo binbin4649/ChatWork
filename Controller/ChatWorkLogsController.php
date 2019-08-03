@@ -24,8 +24,21 @@ class ChatWorkLogsController extends ChatWorkAppController {
     }
     //$this->Security->unlockedActions = array('payment');
   }
-  
-  
+
+  	public function admin_index() {
+		$this->pageTitle = 'ChatWork ログ一覧';
+		$conditions = [];
+		if($this->request->is('post')){
+			$data = $this->request->data;
+			if($data['ChatWorkLog']['mypage_id']) $conditions[] = array('ChatWorkLog.mypage_id' => $data['ChatWorkLog']['mypage_id']);
+		}
+		$this->paginate = array('conditions' => $conditions,
+			'order' => 'ChatWorkLog.created DESC',
+			'limit' => 50
+		);
+		$ChatWorkLogs = $this->paginate('ChatWorkLog');
+		$this->set('ChatWorkLogs', $ChatWorkLogs);
+	}
   
   
   
