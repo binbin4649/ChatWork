@@ -46,3 +46,9 @@ if ($this->Session->check('Message.auth')) {
 	<?php echo $this->BcForm->submit('編集', array('div' => false, 'class' => 'btn btn-lg btn-primary btn-e', 'id' => 'BtnLogin')) ?>
 </div>
 <?php echo $this->BcForm->end() ?>
+<div>
+	<p><small>
+		確認方法など詳しくは<a href="/howto/howto-member#chatwork">メンバーの使い方：ChatWork設定</a>をご参照ください。
+	</small></p>
+	<p></p>
+</div>
